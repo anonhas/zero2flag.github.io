@@ -18,192 +18,58 @@
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: monospace;
       background-color: var(--rosa-principal);
       color: var(--preto);
-    }
-
-    header {
-      padding: 0;
-      text-align: center;
+      font-family: '04b03', monospace;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
-    header img {
-      display: block;
-      margin: 0 auto;
-      width: 80%;
-      max-width: 420px;
+    img.logo {
+      width: 90%;
+      max-width: 500px;
       height: auto;
+      margin-bottom: 40px;
     }
 
     nav {
-      font-family: '04b03', monospace;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      padding: 0 0 10px 0;
-      flex-wrap: wrap;
     }
 
     nav a {
-      color: var(--preto);
       text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    section {
-      padding: 30px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    h2 {
       color: var(--preto);
       font-size: 20px;
+      font-weight: bold;
+      padding: 5px 10px;
     }
 
-    p, ul {
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.8em;
-    }
-
-    /* Menu hambúrguer */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 8px;
-      align-items: center;
-      margin-top: -10px;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: var(--preto);
-      margin: 4px 0;
-    }
-
-    .nav-links {
-      display: flex;
-    }
-
-    @media (max-width: 600px) {
-      header img {
-        width: 80%;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding-bottom: 10px;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
+    nav a:hover {
+      text-decoration: underline;
     }
   </style>
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('nav-links');
-      nav.classList.toggle('active');
-    }
-  </script>
 </head>
 <body>
-  <header>
-    <img src="Zero2Flag.svg" alt="zero2flag logo" />
-  </header>
+  <img src="Zero2Flag.svg" alt="zero2flag logo" class="logo" />
 
-  <div class="hamburger" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
-  <nav id="nav-links" class="nav-links">
-    <a href="#sobre">Sobre</a>
-    <a href="#conteudo">Conteudo</a>
-    <a href="#eventos">Eventos</a>
-    <a href="#comunidade">Comunidade</a>
-    <a href="#contato">Contato</a>
+  <nav>
+    <a href="sobre.html">Sobre</a>
+    <a href="conteudo.html">Conteudo</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="contato.html">Contato</a>
   </nav>
-
-  <section id="sobre">
-    <h2>Sobre</h2>
-    <p>
-      Zero2Flag é o ponto de partida essencial para quem deseja dominar a
-      segurança ofensiva e se destacar como especialista na área. Nossa missão
-      é empoderar profissionais e entusiastas em cibersegurança com conteúdo
-      prático, direto e acessível, do básico ao avançado, sempre com exemplos
-      reais e abordagens modernas.
-    </p>
-  </section>
-
-  <section id="conteudo">
-    <h2>Conteudo e Serviços</h2>
-    <ul>
-      <li>
-        Tutoriais detalhados sobre vulnerabilidades, exploração e defesa.
-      </li>
-      <li>
-        Práticas aplicadas a cenários reais, com foco em resultados concretos.
-      </li>
-      <li>
-        Serviços personalizados de segurança ofensiva para empresas.
-      </li>
-    </ul>
-  </section>
-
-  <section id="eventos">
-    <h2>Próximos Eventos</h2>
-    <p>
-      Fique ligada(o) nos nossos eventos, lives e CTFs! Em breve mais
-      informações.
-    </p>
-  </section>
-
-  <section id="comunidade">
-    <h2>Comunidade</h2>
-    <p>
-      Fomentamos uma comunidade vibrante para compartilhar conhecimento, trocar
-      experiências e inspirar a próxima geração de líderes em cibersegurança.
-    </p>
-  </section>
-
-  <section id="contato">
-    <h2>Contato</h2>
-    <p>
-      Entre em contato com a gente por
-      <a href="mailto:contato@zero2flag.com" style="color: var(--preto)"
-        >contato@zero2flag.com</a
-      >
-    </p>
-  </section>
-
-  <footer>
-    &copy; 2025 zero2flag — Todos os direitos reservados.
-  </footer>
 </body>
 </html>
