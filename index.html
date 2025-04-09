@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>zero2flag</title>
-  <link rel="icon" href="logo.svg" type="image/svg" />
+  <link rel="icon" href="favicon.png" type="image/png" />
   <style>
     @font-face {
       font-family: '04b03';
@@ -33,18 +33,18 @@
     }
 
     header img {
-      width: 50%;
-      max-width: 300px;
+      width: 60%;
+      max-width: 350px;
       height: auto;
     }
 
     nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      padding: 10px 20px;
       font-family: '04b03', monospace;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -76,33 +76,65 @@
       font-size: 0.8em;
     }
 
-    /* Responsividade extra */
-    @media (max-width: 480px) {
-      nav {
+    /* Menu hambúrguer */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 10px;
+      align-items: center;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: var(--preto);
+      margin: 4px 0;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    @media (max-width: 600px) {
+      header img {
+        width: 80%;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
         flex-direction: column;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
+        padding-bottom: 10px;
       }
 
-      header img {
-        width: 70%;
-      }
-
-      h2 {
-        font-size: 18px;
-      }
-
-      p, li {
-        font-size: 13px;
+      .nav-links.active {
+        display: flex;
       }
     }
   </style>
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+  </script>
 </head>
 <body>
   <header>
     <img src="Zero2Flag.svg" alt="zero2flag logo" />
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </header>
-  <nav>
+  <nav id="nav-links" class="nav-links">
     <a href="#sobre">Sobre</a>
     <a href="#conteudo">Conteudo</a>
     <a href="#eventos">Eventos</a>
