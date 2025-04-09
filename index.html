@@ -1,106 +1,169 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zero2flag</title>
-    <link rel="icon" href="favicon.png" type="image/png">
-    <style>
-        @font-face {
-            font-family: '04b03';
-            src: url('04B_30__.TTF') format('truetype');
-        }
-        :root {
-            --rosa-principal: #F8DBE8;
-            --preto: #000000;
-        }
-        body {
-            margin: 0;
-            font-family: '04b03', monospace;
-            background-color: var(--rosa-principal);
-            color: var(--preto);
-        }
-        header {
-            padding: 20px;
-            text-align: center;
-            background-color: transparent;
-        }
-        header img {
-            max-width: 400px;
-            height: auto;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px 0;
-            font-family: '04b03', monospace;
-        }
-        nav a {
-            color: var(--preto);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        section {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            font-family: monospace;
-        }
-        h2 {
-            color: var(--preto);
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zero2flag</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <style>
+    @font-face {
+      font-family: '04b03';
+      src: url('04B_30__.TTF') format('truetype');
+    }
+
+    :root {
+      --rosa-principal: #F8DBE8;
+      --preto: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: monospace;
+      background-color: var(--rosa-principal);
+      color: var(--preto);
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+    }
+
+    header img {
+      width: 50%;
+      max-width: 300px;
+      height: auto;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 20px;
+      font-family: '04b03', monospace;
+    }
+
+    nav a {
+      color: var(--preto);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: var(--preto);
+      font-size: 20px;
+    }
+
+    p, ul {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8em;
+    }
+
+    /* Responsividade extra */
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      header img {
+        width: 70%;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      p, li {
+        font-size: 13px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="Zero2Flag.svg" alt="zero2flag logo">
-    </header>
-    <nav>
-        <a href="#sobre">Sobre</a>
-        <a href="#conteudo">Conteudo</a>
-        <a href="#eventos">Eventos</a>
-        <a href="#comunidade">Comunidade</a>
-        <a href="#contato">Contato</a>
-    </nav>
+  <header>
+    <img src="Zero2Flag.svg" alt="zero2flag logo" />
+  </header>
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#conteudo">Conteudo</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#comunidade">Comunidade</a>
+    <a href="#contato">Contato</a>
+  </nav>
 
-    <section id="sobre">
-        <h2>Sobre</h2>
-        <p>Zero2Flag é o ponto de partida essencial para quem deseja dominar a segurança ofensiva e se destacar como especialista na área. Nossa missão é empoderar profissionais e entusiastas em cibersegurança com conteúdo prático, direto e acessível, do básico ao avançado, sempre com exemplos reais e abordagens modernas.</p>
-    </section>
+  <section id="sobre">
+    <h2>Sobre</h2>
+    <p>
+      Zero2Flag é o ponto de partida essencial para quem deseja dominar a
+      segurança ofensiva e se destacar como especialista na área. Nossa missão
+      é empoderar profissionais e entusiastas em cibersegurança com conteúdo
+      prático, direto e acessível, do básico ao avançado, sempre com exemplos
+      reais e abordagens modernas.
+    </p>
+  </section>
 
-    <section id="conteudo">
-        <h2>Conteúdo e Serviços</h2>
-        <ul>
-            <li>Tutoriais detalhados sobre vulnerabilidades, exploração e defesa.</li>
-            <li>Práticas aplicadas a cenários reais, com foco em resultados concretos.</li>
-            <li>Serviços personalizados de segurança ofensiva para empresas.</li>
-        </ul>
-    </section>
+  <section id="conteudo">
+    <h2>Conteudo e Serviços</h2>
+    <ul>
+      <li>
+        Tutoriais detalhados sobre vulnerabilidades, exploração e defesa.
+      </li>
+      <li>
+        Práticas aplicadas a cenários reais, com foco em resultados concretos.
+      </li>
+      <li>
+        Serviços personalizados de segurança ofensiva para empresas.
+      </li>
+    </ul>
+  </section>
 
-    <section id="eventos">
-        <h2>Próximos Eventos</h2>
-        <p>Fique ligada(o) nos nossos eventos, lives e CTFs! Em breve mais informações.</p>
-    </section>
+  <section id="eventos">
+    <h2>Próximos Eventos</h2>
+    <p>
+      Fique ligada(o) nos nossos eventos, lives e CTFs! Em breve mais
+      informações.
+    </p>
+  </section>
 
-    <section id="comunidade">
-        <h2>Comunidade</h2>
-        <p>Fomentamos uma comunidade vibrante para compartilhar conhecimento, trocar experiências e inspirar a próxima geração de líderes em cibersegurança.</p>
-    </section>
+  <section id="comunidade">
+    <h2>Comunidade</h2>
+    <p>
+      Fomentamos uma comunidade vibrante para compartilhar conhecimento, trocar
+      experiências e inspirar a próxima geração de líderes em cibersegurança.
+    </p>
+  </section>
 
-    <section id="contato">
-        <h2>Contato</h2>
-        <p>Entre em contato com a gente por <a href="mailto:contato@zero2flag.com" style="color: var(--preto);">contato@zero2flag.com</a></p>
-    </section>
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>
+      Entre em contato com a gente por
+      <a href="mailto:contato@zero2flag.com" style="color: var(--preto)"
+        >contato@zero2flag.com</a
+      >
+    </p>
+  </section>
 
-    <footer>
-        &copy; 2025 zero2flag — Todos os direitos reservados.
-    </footer>
+  <footer>
+    &copy; 2025 zero2flag — Todos os direitos reservados.
+  </footer>
 </body>
 </html>
