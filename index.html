@@ -7,34 +7,37 @@
     <title>zero2flag</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <style>
+        @font-face {
+            font-family: '04b03';
+            src: url('04B_30__.TTF') format('truetype');
+        }
         :root {
-            --rosa-principal: rgb(248, 219, 232);
-            --preto-fundo: #0f0f0f;
-            --branco: #ffffff;
+            --rosa-principal: #F8DBE8;
+            --preto: #000000;
         }
         body {
             margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: var(--preto-fundo);
-            color: var(--rosa-principal);
+            font-family: '04b03', monospace;
+            background-color: var(--rosa-principal);
+            color: var(--preto);
         }
         header {
             padding: 20px;
             text-align: center;
-            background-color: #000;
+            background-color: transparent;
         }
         header img {
-            max-height: 80px;
+            max-width: 300px;
+            height: auto;
         }
         nav {
             display: flex;
             justify-content: center;
             gap: 20px;
-            background-color: #111;
             padding: 10px 0;
         }
         nav a {
-            color: var(--rosa-principal);
+            color: var(--preto);
             text-decoration: none;
             font-weight: bold;
         }
@@ -44,19 +47,18 @@
             margin: 0 auto;
         }
         h2 {
-            color: var(--branco);
+            color: var(--preto);
         }
         footer {
             text-align: center;
             padding: 20px;
-            background-color: #111;
             font-size: 0.9em;
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="zero2flag logo">
+        <img src="logo.svg" alt="zero2flag logo">
     </header>
     <nav>
         <a href="#sobre">Sobre</a>
@@ -92,7 +94,7 @@
 
     <section id="contato">
         <h2>Contato</h2>
-        <p>Entre em contato com a gente por <a href="mailto:contato@zero2flag.com" style="color: var(--branco);">contato@zero2flag.com</a></p>
+        <p>Entre em contato com a gente por <a href="mailto:contato@zero2flag.com" style="color: var(--preto);">contato@zero2flag.com</a></p>
     </section>
 
     <footer>
