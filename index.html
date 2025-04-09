@@ -28,8 +28,11 @@
     }
 
     header {
-      padding: 0px;
+      padding: 0;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     header img {
@@ -38,9 +41,7 @@
       width: 80%;
       max-width: 420px;
       height: auto;
-      padding-bottom: 8px; /* controla a distância até o menu */
     }
-
 
     nav {
       font-family: '04b03', monospace;
@@ -85,8 +86,9 @@
       display: none;
       flex-direction: column;
       cursor: pointer;
-      padding: 10px;
+      padding: 8px;
       align-items: center;
+      margin-top: -10px;
     }
 
     .hamburger div {
@@ -132,12 +134,14 @@
 <body>
   <header>
     <img src="Zero2Flag.svg" alt="zero2flag logo" />
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
   </header>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
   <nav id="nav-links" class="nav-links">
     <a href="#sobre">Sobre</a>
     <a href="#conteudo">Conteudo</a>
