@@ -2,12 +2,18 @@ function login() {
   const user = document.getElementById('user').value;
   const pass = document.getElementById('pass').value;
 
-  // Vulnerabilidade: se usuário for "admin", qualquer senha é aceita
-  const resposta = {
-    success: user === 'admin',
-    token: btoa(user + ":" + pass),
-    message: user === 'admin' ? "Bem-vindo, admin!" : "Credenciais inválidas"
-  };
-
-  document.getElementById('resposta').textContent = JSON.stringify(resposta, null, 2);
+  fetch("https://zvwa-api.onrender.com/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ user, pass })
+  })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("resposta").textContent = JSON.stringify(data, null, 2);
+    })
+    .catch(err => {
+      document.getElementById("resposta").textContent = "Erro: " + err;
+    });
 }
