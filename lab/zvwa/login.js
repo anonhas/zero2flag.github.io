@@ -12,17 +12,22 @@ function login() {
   })
     .then(async res => {
       const data = await res.json();
-      if (!res.ok) {
-        if (res.status === 404) {
-          output.style.color = "red";
-          output.textContent = "Usuário inexistente.";
-        } else if (res.status === 401) {
-          output.style.color = "orange";
-          output.textContent = `Senha do usuário admin está incorreta.\nDica do backend: ${data.dica}`;
-        }
+
+      // Usuário não encontrado
+      if (res.status === 404) {
+        output.style.color = "red";
+        output.textContent = "Usuário inexistente.";
         return;
       }
 
+      // Senha errada para o usuário admin
+      if (res.status === 401) {
+        output.style.color = "green";
+        output.textContent = "Senha do usuário admin está incorreta.";
+        return;
+      }
+
+      // Sucesso no login
       output.style.color = "green";
       output.textContent = JSON.stringify(data, null, 2);
     })
