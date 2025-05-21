@@ -8,20 +8,15 @@ function fazerLogin() {
     body: JSON.stringify({ email, password: senha })
   })
     .then(res => res.json())
-.then(data => {
-  if (data.error) {
-    if (data.error === "Usuário inexistente") {
-      alert("Usuário inexistente.");
-    } else {
-      alert(`Senha do usuário ${email} está incorreta.`);
-    }
-    return;
-  }
-
-  localStorage.setItem("user", JSON.stringify(data));
-  window.location.href = "dashboard.html";
-})
-
+    .then(data => {
+      if (data.error) {
+        if (data.error === "Usuário inexistente") {
+          alert("Usuário inexistente.");
+        } else {
+          alert(`Senha do usuário ${email} está incorreta.`);
+        }
+        return;
+      }
 
       localStorage.setItem("user", JSON.stringify(data));
       window.location.href = "dashboard.html";
