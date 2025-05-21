@@ -33,10 +33,10 @@ function acessarSegredo() {
       const destino = document.getElementById("segredo");
 
       if (!res.ok) {
-        destino.textContent = `❌ Erro: ${data.error}`;
+        destino.textContent = ` Erro: ${data.error}`;
         return;
       }
 
-      destino.textContent = `💣 Conteúdo secreto acessado:\n\n${JSON.stringify(data, null, 2)}`;
+      destino.textContent = ` Conteúdo secreto acessado:\n\n${JSON.stringify(data, null, 2)}`;
     });
 }
