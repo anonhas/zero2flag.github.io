@@ -1,38 +1,23 @@
-function login() {
-  const user = document.getElementById('user').value;
-  const pass = document.getElementById('pass').value;
-  const output = document.getElementById("resposta");
+function fazerLogin() {
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
 
   fetch("https://zvwa-api.onrender.com/api/login", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ user, pass })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password: senha })
   })
-    .then(async res => {
-      const data = await res.json();
-
-      // Usuário não encontrado
-      if (res.status === 404) {
-        output.style.color = "red";
-        output.textContent = "Usuário inexistente.";
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        alert("Credenciais inválidas.");
         return;
       }
 
-      // Senha errada para o usuário admin
-      if (res.status === 401) {
-        output.style.color = "green";
-        output.textContent = "Senha do usuário admin está incorreta.";
-        return;
-      }
-
-      // Sucesso no login
-      output.style.color = "green";
-      output.textContent = JSON.stringify(data, null, 2);
+      localStorage.setItem("user", JSON.stringify(data));
+      window.location.href = "dashboard.html";
     })
-    .catch(err => {
-      output.style.color = "red";
-      output.textContent = "Erro: " + err;
+    .catch(() => {
+      alert("Erro ao conectar com a API.");
     });
 }
