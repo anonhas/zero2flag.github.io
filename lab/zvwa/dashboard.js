@@ -1,35 +1,16 @@
-let role = "";
-let token = "";
+const user = JSON.parse(localStorage.getItem("user"));
 
-function fazerLogin() {
-  const email = document.getElementById("email").value;
-  const senha = document.getElementById("senha").value;
-
-  fetch("https://zvwa-api.onrender.com/api/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password: senha })
-  })
-    .then(res => res.json())
-    .then(data => {
-      role = data.role;
-      token = data.token;
-
-      if (role === "admin") {
-        document.getElementById("conteudo-admin").style.display = "block";
-        carregarDadosAdmin();
-      } else {
-        document.getElementById("conteudo-user").style.display = "block";
-      }
-
-      document.getElementById("botao-secreto").style.display = "block";
-    })
-    .catch(err => {
-      alert("Erro no login: " + err);
-    });
+if (!user) {
+  alert("Acesso negado. Faça login primeiro.");
+  window.location.href = "login.html";
 }
 
-function carregarDadosAdmin() {
+const role = user.role;
+
+if (role === "admin") {
+  document.getElementById("painel-admin").style.display = "block";
+  document.getElementById("botao-secreto").style.display = "block";
+
   fetch("https://zvwa-api.onrender.com/api/dashboard/data", {
     headers: { "x-role": "admin" }
   })
@@ -37,6 +18,10 @@ function carregarDadosAdmin() {
     .then(data => {
       document.getElementById("dados-admin").textContent = JSON.stringify(data, null, 2);
     });
+
+} else {
+  document.getElementById("painel-user").style.display = "block";
+  document.getElementById("botao-secreto").style.display = "block";
 }
 
 function acessarSegredo() {
@@ -45,13 +30,13 @@ function acessarSegredo() {
   })
     .then(async res => {
       const data = await res.json();
+      const destino = document.getElementById("segredo");
+
       if (!res.ok) {
-        document.getElementById("segredo").textContent =
-          `❌ Erro: ${data.error}`;
+        destino.textContent = `❌ Erro: ${data.error}`;
         return;
       }
 
-      document.getElementById("segredo").textContent =
-        `💣 Conteúdo secreto acessado!\n\n${JSON.stringify(data, null, 2)}`;
+      destino.textContent = `💣 Conteúdo secreto acessado:\n\n${JSON.stringify(data, null, 2)}`;
     });
 }
