@@ -32,6 +32,11 @@
       font-weight: bold;
       cursor: pointer;
     }
+    input {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -55,6 +60,20 @@
 
   <pre id="segredo"></pre>
 
+  <h2>Busca Pública</h2>
+  <p>Digite algo para pesquisar no sistema (simulado):</p>
+  <input id="campo-busca" placeholder="Digite sua busca">
+  <button onclick="fazerBusca()">Buscar</button>
+
+  <div id="resultado-busca" style="margin-top:20px; background: #fff; padding: 10px; border-radius: 5px;"></div>
+
   <script src="dashboard.js"></script>
+  <script>
+    function fazerBusca() {
+      const termo = document.getElementById("campo-busca").value;
+      document.getElementById("resultado-busca").innerHTML =
+        `Resultado para: <strong>${termo}</strong>`;
+    }
+  </script>
 </body>
 </html>
