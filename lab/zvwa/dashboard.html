@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - ZVWA</title>
+  <style>
+    body {
+      background: #ffc1da;
+      font-family: monospace;
+      padding: 40px;
+      color: #222;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      color: #ff2c95;
+    }
+    pre {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+      border: none;
+      border-radius: 4px;
+    }
+    button {
+      background: black;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Zero2Flag Dashboard</h1>
+
+  <p><strong>Email:</strong> <input id="email" value="usuaria.comum"></p>
+  <p><strong>Senha:</strong> <input id="senha" value="senha123" type="password"></p>
+  <button onclick="fazerLogin()">Login</button>
+
+  <pre id="resultado">Faça login para visualizar os dados...</pre>
+
+  <div id="botao-secreto" style="display:none;">
+    <button onclick="acessarSegredo()">Acessar Conteúdo Secreto</button>
+  </div>
+
+  <pre id="segredo"></pre>
+
+  <script>
+    let role = '';
+    let token = '';
+
+    function fazerLogin() {
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      fetch("https://zvwa-api.onrender.com/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password: senha })
+      })
+      .then(res => res.json())
+      .then(data => {
+        role = data.role;
+        token = data.token;
+
+        document.getElementById("resultado").textContent = 
+          `Bem-vinda, ${data.email}!\n\nRole: ${role}\nToken: ${token}`;
+
+        carregarDashboard();
+        document.getElementById("botao-secreto").style.display = "block";
+      })
+      .catch(err => {
+        document.getElementById("resultado").textContent = "Erro: " + err;
+      });
+    }
+
+    function carregarDashboard() {
+      fetch("https://zvwa-api.onrender.com/api/dashboard/data", {
+        headers: {
+          "x-role": role
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("resultado").textContent +=
+          `\n\n📊 Dados do Dashboard:\n${JSON.stringify(data, null, 2)}`;
+      });
+    }
+
+    function acessarSegredo() {
+      fetch("https://zvwa-api.onrender.com/api/dashboard/secret-data", {
+        headers: {
+          "x-role": role
+        }
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (!res.ok) {
+          document.getElementById("segredo").textContent =
+            `❌ Erro: ${data.error}`;
+          return;
+        }
+        document.getElementById("segredo").textContent =
+          `💣 Conteúdo secreto carregado!\n\n${JSON.stringify(data, null, 2)}`;
+      });
+    }
+  </script>
+</body>
+</html>
