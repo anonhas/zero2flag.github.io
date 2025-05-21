@@ -15,18 +15,6 @@
     h1, h2 {
       color: #ff2c95;
     }
-    input, button {
-      padding: 8px;
-      margin: 5px;
-      border: none;
-      border-radius: 4px;
-    }
-    button {
-      background: black;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
     pre {
       background: #fff;
       padding: 15px;
@@ -34,27 +22,30 @@
       margin-top: 20px;
       overflow-x: auto;
     }
+    button {
+      padding: 10px;
+      margin-top: 20px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h1>Zero2Flag Dashboard</h1>
 
-  <input id="email" value="usuaria.comum">
-  <input id="senha" type="password" value="senha123">
-  <button onclick="fazerLogin()">Login</button>
-
-  <div id="conteudo-user" style="display:none;">
-    <h2>Bem-vinda, usuária!</h2>
-    <p>Você está visualizando seus próprios dados fictícios:</p>
+  <div id="painel-user" style="display:none;">
+    <h2>Bem-vinda, ana.elizaur!</h2>
     <pre>{
-  "mensagens": ["Tudo certo por aqui!", "Seu plano está ativo."],
-  "notificacoes": ["Nova mensagem do suporte"]
+  "notificacoes": ["Atualização no sistema", "Sua fatura está disponível"]
 }</pre>
   </div>
 
-  <div id="conteudo-admin" style="display:none;">
-    <h2>Área Administrativa</h2>
-    <p>Gerenciamento interno do sistema:</p>
+  <div id="painel-admin" style="display:none;">
+    <h2>Área de Administração - administrator</h2>
     <pre id="dados-admin">Carregando dados...</pre>
   </div>
 
@@ -64,6 +55,6 @@
 
   <pre id="segredo"></pre>
 
-  <script src="dashboard.js?v=1"></script>
+  <script src="dashboard.js?v=3"></script>
 </body>
 </html>
