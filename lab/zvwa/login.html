@@ -1,47 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <title>zero2flag - Login</title>
- <style>
-  body {
-    background: #ffc1da; /* rosa bebê */
-    color: #fff;
-    font-family: 'Courier New', monospace;
-    text-align: center;
-    margin-top: 100px;
-  }
-
-  input {
-    margin: 5px;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-  }
-
-  button {
-    padding: 10px 20px;
-    background: black;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-  }
-
-  #resposta {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: red;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Login - ZVWA</title>
+  <style>
+    body {
+      background: #ffc1da;
+      font-family: monospace;
+      padding: 40px;
+      color: #222;
+      text-align: center;
+    }
+    input, button {
+      padding: 8px;
+      margin: 10px;
+      border: none;
+      border-radius: 4px;
+    }
+    button {
+      background: black;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>zero2flag Login</h1>
-  <input type="text" id="user" placeholder="Usuário">
-  <input type="password" id="pass" placeholder="Senha">
-  <button onclick="login()">Entrar</button>
-  <pre id="resposta"></pre>
-  <script src="login.js"></script>
+  <h1>Login ZVWA</h1>
+  <input id="email" placeholder="Email" value="ana.elizaur"><br>
+  <input id="senha" type="password" placeholder="Senha" value="senha123"><br>
+  <button onclick="fazerLogin()">Entrar</button>
+
+  <script src="login.js?v=3"></script>
 </body>
 </html>
