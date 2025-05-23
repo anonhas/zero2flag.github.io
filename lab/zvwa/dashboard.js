@@ -41,12 +41,13 @@ function acessarSegredo() {
 function fazerBusca() {
   const termo = document.getElementById("campo-busca").value;
 
-  // Se for o payload clássico, troca pelo que revela a flag
+  // Reflete intencionalmente o script para simular vulnerabilidade XSS com entrega da flag
   if (termo === "<script>alert('1')</script>" || termo === "<script>alert(1)</script>") {
-    document.getElementById("resultado-busca").innerHTML = `<script>alert('🎯 FLAG: Z2F{xss_search_reflected}')</script>`;
+    document.getElementById("resultado-busca").innerHTML =
+      "<script>alert('🎯 FLAG: Z2F{xss_search_reflected}')</script>";
     return;
   }
 
-  // Reflete normalmente (mantendo vulnerabilidade)
+  // Reflete normalmente (inseguro)
   document.getElementById("resultado-busca").innerHTML = termo;
 }
