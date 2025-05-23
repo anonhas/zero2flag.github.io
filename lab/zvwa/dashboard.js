@@ -40,7 +40,13 @@ function acessarSegredo() {
 
 function fazerBusca() {
   const termo = document.getElementById("campo-busca").value;
-  // Refletindo o conteúdo diretamente no DOM (intencionalmente inseguro)
-  document.getElementById("resultado-busca").innerHTML =
-    'Você buscou por: ' + termo;
+
+  // Se for o payload clássico, troca pelo que revela a flag
+  if (termo === "<script>alert('1')</script>" || termo === "<script>alert(1)</script>") {
+    document.getElementById("resultado-busca").innerHTML = `<script>alert('🎯 FLAG: Z2F{xss_search_reflected}')</script>`;
+    return;
+  }
+
+  // Reflete normalmente (mantendo vulnerabilidade)
+  document.getElementById("resultado-busca").innerHTML = termo;
 }
