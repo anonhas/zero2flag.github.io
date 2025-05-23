@@ -3,7 +3,7 @@
   "info": {
     "title": "ZVWA Fake API",
     "version": "1.0.0",
-    "description": "Esta \u00e9 uma documenta\u00e7\u00e3o falsa da API do ZVWA para fins educacionais."
+    "description": "Esta é uma documentação **falsa e pública** da API do ZVWA para fins educacionais.\n\n⚠️ **ATENÇÃO:** Documentações públicas como esta podem expor endpoints sensíveis.\n\n🎯 Encontre as *flags* escondidas e submeta-as em:\n👉 https://zero2flag.com/lab/zvwa/secrets.html\n\n💡 Dica: fique atento a comentários, endpoints esquecidos e rotas de debug."
   },
   "paths": {
     "/api/status": {
@@ -16,7 +16,8 @@
               "application/json": {
                 "example": {
                   "status": "operacional",
-                  "tempoOnline": "1024h"
+                  "tempoOnline": "1024h",
+                  "mensagem": "ZVWA está rodando normalmente."
                 }
               }
             }
@@ -26,17 +27,40 @@
     },
     "/api/user/list": {
       "get": {
-        "summary": "Retorna uma lista de usu\u00e1rios (simulado)",
+        "summary": "Retorna uma lista de usuários (simulado)",
         "responses": {
           "200": {
-            "description": "Lista de usu\u00e1rios simulada",
+            "description": "Lista de usuários simulada",
             "content": {
               "application/json": {
                 "example": {
                   "usuarios": [
                     "ana.elizaur",
                     "guest",
-                    "admin_oculto"
+                    "admin_oculto",
+                    "suporte123",
+                    "jrocha_dev"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/notifications": {
+      "get": {
+        "summary": "Retorna notificações fictícias do sistema",
+        "responses": {
+          "200": {
+            "description": "Notificações do usuário atual",
+            "content": {
+              "application/json": {
+                "example": {
+                  "notificacoes": [
+                    "Sua fatura está disponível.",
+                    "Atualização de segurança aplicada.",
+                    "Nova política de privacidade vigente."
                   ]
                 }
               }
@@ -55,8 +79,29 @@
               "application/json": {
                 "example": {
                   "debugMode": true,
-                  "info": "Esta rota n\u00e3o deveria estar exposta.",
-                  "flag": "Z2F{exposed_swagger_doc}"
+                  "info": "Esta rota não deveria estar exposta.",
+                  "flag": "Z2F{exposed_swagger_doc}",
+                  "lembrete": "As flags devem ser submetidas em https://zero2flag.com/lab/zvwa/secrets.html"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/internal/health-check": {
+      "get": {
+        "summary": "Simula verificação interna de integridade do sistema",
+        "responses": {
+          "200": {
+            "description": "Verificação interna OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "db": "ok",
+                  "api_gateway": "ok",
+                  "cache": "ok",
+                  "mensagem": "Internamente tudo parece bem — mas será mesmo?"
                 }
               }
             }
