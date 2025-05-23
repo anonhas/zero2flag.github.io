@@ -40,9 +40,7 @@ function acessarSegredo() {
 
 function fazerBusca() {
   const termo = document.getElementById("campo-busca").value;
-  let resultado = 'Resultado para: <strong>' + termo + '</strong>';
-  if (termo.includes("<script>")) {
-    resultado += '<br>🎯 FLAG: Z2F{xss_search_reflected}';
-  }
-  document.getElementById("resultado-busca").innerHTML = resultado;
+  // Refletindo o conteúdo diretamente no DOM (intencionalmente inseguro)
+  document.getElementById("resultado-busca").innerHTML =
+    'Você buscou por: ' + termo;
 }
