@@ -5,7 +5,6 @@ if (!user) {
 }
 const role = user.role;
 
-// Exibe painel conforme role
 if (role === "admin") {
   document.getElementById("painel-admin").style.display = "block";
   document.getElementById("botao-secreto").style.display = "block";
@@ -41,30 +40,24 @@ function acessarSegredo() {
     });
 }
 
-// Vulnerabilidade de XSS refletido realista
 function fazerBusca() {
   const termo = document.getElementById("campo-busca").value;
   const resultadoDiv = document.getElementById("resultado-busca");
 
-  // Reflete o termo bruto diretamente
   resultadoDiv.innerHTML = termo;
 
-  // Agora percorre as tags <script> injetadas e as executa
   const scripts = resultadoDiv.querySelectorAll("script");
   scripts.forEach(oldScript => {
     const code = oldScript.textContent.trim();
 
-    // Se for o payload de teste, exibe a flag
     if (code === "alert('1')" || code === "alert(1)") {
-      alert("🎯 FLAG: Z2F{xss_search_reflected}");
+      alert(" FLAG: Z2F{xss_search_reflected}");
     } else {
-      // Senão, executa normalmente o script injetado
       const s = document.createElement("script");
       s.text = code;
       document.body.appendChild(s);
     }
 
-    // Remove a tag original
     oldScript.remove();
   });
 }
