@@ -19,6 +19,7 @@ if (role === "admin") {
   document.getElementById("painel-user").style.display = "block";
   document.getElementById("botao-secreto").style.display = "block";
 }
+
 function acessarSegredo() {
   fetch("https://zvwa-api.onrender.com/api/dashboard/secret-data", {
     headers: { "x-role": role }
@@ -31,5 +32,17 @@ function acessarSegredo() {
         return;
       }
       destino.textContent = JSON.stringify(data, null, 2);
+      if (data.flag) {
+        destino.innerHTML += "\n\n🎯 FLAG: " + data.flag;
+      }
     });
+}
+
+function fazerBusca() {
+  const termo = document.getElementById("campo-busca").value;
+  let resultado = 'Resultado para: <strong>' + termo + '</strong>';
+  if (termo.includes("<script>")) {
+    resultado += '<br>🎯 FLAG: Z2F{xss_search_reflected}';
+  }
+  document.getElementById("resultado-busca").innerHTML = resultado;
 }
