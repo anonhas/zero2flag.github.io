@@ -23,6 +23,18 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .links {
+      margin-top: 30px;
+      font-size: 14px;
+    }
+    .links a {
+      color: #ff2c95;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -30,6 +42,12 @@
   <input id="email" placeholder="Coloque seu usuário"><br>
   <input id="senha" type="password" placeholder="Sua senha secreta"><br>
   <button onclick="fazerLogin()">Entrar</button>
+
+  <div class="links">
+    <a href="https://instagram.com/zero2flag" target="_blank">Instagram</a>
+    <a href="https://linkedin.com/company/zero2flag" target="_blank">LinkedIn</a>
+    <a href="https://zero2flag.com/lab/zvwa/swagger.json" target="_blank">Documentação técnica</a>
+  </div>
 
   <script src="login.js"></script>
 </body>
