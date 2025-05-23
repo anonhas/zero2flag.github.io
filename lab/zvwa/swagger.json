@@ -1,0 +1,68 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ZVWA Fake API",
+    "version": "1.0.0",
+    "description": "Esta \u00e9 uma documenta\u00e7\u00e3o falsa da API do ZVWA para fins educacionais."
+  },
+  "paths": {
+    "/api/status": {
+      "get": {
+        "summary": "Verifica o status do sistema",
+        "responses": {
+          "200": {
+            "description": "Status atual do sistema",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "operacional",
+                  "tempoOnline": "1024h"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/list": {
+      "get": {
+        "summary": "Retorna uma lista de usu\u00e1rios (simulado)",
+        "responses": {
+          "200": {
+            "description": "Lista de usu\u00e1rios simulada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "usuarios": [
+                    "ana.elizaur",
+                    "guest",
+                    "admin_oculto"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/dev/secret-debug": {
+      "get": {
+        "summary": "Endpoint de debug deixado por engano (simulado)",
+        "responses": {
+          "200": {
+            "description": "Dados internos de debug e flag escondida",
+            "content": {
+              "application/json": {
+                "example": {
+                  "debugMode": true,
+                  "info": "Esta rota n\u00e3o deveria estar exposta.",
+                  "flag": "Z2F{exposed_swagger_doc}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
