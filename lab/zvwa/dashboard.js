@@ -40,6 +40,29 @@ function acessarSegredo() {
     });
 }
 
+function verPerfil() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user || !user.email) {
+    alert("Usuário não identificado.");
+    return;
+  }
+
+  // Associando es aos IDs dos 3 u fix
+  const ids = {
+    elizaur: 1,
+    administrator: 100,
+    guest: 2
+  };
+
+  const id = ids[user.email];
+  if (!id) {
+    alert("Usuário não identificado.");
+    return;
+  }
+
+  window.location.href = `/lab/zvwa/perfil.html?id=${id}`;
+}
+
 function fazerBusca() {
   const termo = document.getElementById("campo-busca").value;
   const resultadoDiv = document.getElementById("resultado-busca");
