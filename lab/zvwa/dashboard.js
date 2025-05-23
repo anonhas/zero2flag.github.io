@@ -22,6 +22,8 @@ if (role === "admin") {
   document.getElementById("botao-secreto").style.display = "block";
 }
 
+document.getElementById("bemvinda").textContent = `Bem-vindo, ${user.email}`;
+
 function acessarSegredo() {
   fetch("https://zvwa-api.onrender.com/api/dashboard/secret-data", {
     headers: { "x-role": role }
