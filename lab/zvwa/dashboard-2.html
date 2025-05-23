@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZVWA Dashboard</title>
+  <style>
+    body {
+      background: #ffc1da;
+      font-family: monospace;
+      padding: 40px;
+      color: #222;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #ff2c95;
+    }
+    pre {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    button {
+      padding: 10px;
+      margin-top: 20px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+    }
+    #painel-master {
+      display: none;
+      background: #222;
+      color: #0f0;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ZVWA Dashboard</h1>
+
+  <div id="painel-user" style="display:none;">
+    <h2>Bem-vinda, elizaur</h2>
+    <pre>{
+  "notificacoes": ["Atualização no sistema", "Sua fatura está disponível"]
+}</pre>
+  </div>
+
+  <div id="painel-admin" style="display:none;">
+    <h2>Área de Administração - administrator</h2>
+    <pre id="dados-admin">Carregando dados...</pre>
+  </div>
+
+  <div id="painel-master">
+    <h2>👁 Painel Mestre Ativo</h2>
+    <p>Sistema sob seu controle.</p>
+    <pre>{
+  "graficos": ["Uso de CPU: 98%", "Atividade suspeita detectada", "Monitoramento de tokens ativo"]
+}</pre>
+  </div>
+
+  <div id="botao-secreto" style="display:none;">
+    <button onclick="acessarSegredo()">Acessar Conteúdo Secreto</button>
+  </div>
+
+  <pre id="segredo"></pre>
+
+  <!-- Z2F{B8Yg67fc7tad$g8ab5%} -->
+
+  <h2>Busca Pública</h2>
+  <input id="campo-busca" placeholder="Digite sua busca">
+  <button onclick="fazerBusca()">Buscar</button>
+  <div id="resultado-busca" style="margin-top:20px; background: #fff; padding: 10px; border-radius: 5px;"></div>
+
+  <script src="dashboard.js"></script>
+  <script>
+    function fazerBusca() {
+      const termo = document.getElementById("campo-busca").value;
+      document.getElementById("resultado-busca").innerHTML =
+        'Resultado para: <strong>' + termo + '</strong>';
+    }
+  </script>
+</body>
+</html>
