@@ -20,6 +20,7 @@ if (role === "admin") {
 } else {
   document.getElementById("painel-user").style.display = "block";
   document.getElementById("botao-secreto").style.display = "block";
+  document.getElementById("painel-master").style.display = "block";
 }
 
 document.getElementById("bemvinda").textContent = `Bem-vindo, ${user.email}`;
