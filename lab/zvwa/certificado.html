@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Seu Certificado ZVWA</title>
+  <style>
+    body {
+      background: pink;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="certCanvas" width="1080" height="720"></canvas>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nome = params.get('nome');
+
+    const canvas = document.getElementById('certCanvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = 'Certificado 02F.png';
+
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      ctx.font = '32px monospace';
+      ctx.fillStyle = 'black';
+      ctx.fillText(nome, 160, 300); // ajuste a posição aqui se necessário
+    };
+  </script>
+</body>
+</html>
