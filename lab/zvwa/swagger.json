@@ -3,7 +3,7 @@
   "info": {
     "title": "ZVWA Fake API",
     "version": "1.0.0",
-    "description": "📘 Documentação pública do ZVWA (simulada para aprendizado).\n\n⚠️ Algumas rotas aqui não deveriam estar documentadas.\n🎯 Flags podem estar escondidas em respostas, nomes e mensagens.\n👉 Submeta as flags em https://zero2flag.com/lab/zvwa/secrets.html"
+    "description": " Documentação pública do ZVWA (simulada para aprendizado).\n\n⚠ Algumas rotas aqui não deveriam estar documentadas.\n Flags podem estar escondidas em respostas, nomes e mensagens.\n Submeta as flags em https://zero2flag.com/lab/zvwa/secrets.html"
   },
   "paths": {
     "/api/status": {
@@ -116,7 +116,7 @@
               "application/json": {
                 "example": {
                   "eco": "valor",
-                  "debug": "flag? não aqui 😈"
+                  "debug": "flag? não aqui"
                 }
               }
             }
@@ -129,7 +129,7 @@
         "summary": "[INSEGURA] Logs expostos via GET?!",
         "responses": {
           "200": {
-            "description": "⚠️ Logs não deveriam estar acessíveis publicamente",
+            "description": "Logs não deveriam estar acessíveis publicamente",
             "content": {
               "application/json": {
                 "example": {
