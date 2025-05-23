@@ -33,8 +33,19 @@ img.onload = () => {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   ctx.font = '32px monospace';
   ctx.fillStyle = 'black';
-  ctx.textAlign = 'center'; // adiciona alinhamento central
-  ctx.fillText(nome, canvas.width / 2, 330); // centraliza no meio do canvas
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+
+// Cálculo de tamanho dinâmico da fonte baseado no comprimento do nome
+let baseFontSize = 32;
+if (nome.length > 25) {
+  baseFontSize = 24;
+} else if (nome.length > 40) {
+  baseFontSize = 18;
+}
+
+ctx.font = `${baseFontSize}px monospace`;
+ctx.fillText(nome, canvas.width / 2, 330);
 };
   </script>
 </body>
