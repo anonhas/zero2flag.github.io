@@ -1,9 +1,9 @@
-{
+naaaaao, nao assim {
   "openapi": "3.0.0",
   "info": {
     "title": "ZVWA Fake API",
     "version": "1.0.0",
-    "description": "Esta é uma documentação **falsa e pública** da API do ZVWA para fins educacionais.\n\n⚠️ **ATENÇÃO:** Documentações públicas como esta podem expor endpoints sensíveis.\n\n🎯 Encontre as *flags* escondidas e submeta-as em:\n👉 https://zero2flag.com/lab/zvwa/secrets.html\n\n💡 Dica: fique atento a comentários, endpoints esquecidos e rotas de debug."
+    "description": "📘 Documentação pública do ZVWA (simulada para aprendizado).\n\n⚠️ Algumas rotas aqui não deveriam estar documentadas.\n🎯 Flags podem estar escondidas em respostas, nomes e mensagens.\n👉 Submeta as flags em https://zero2flag.com/lab/zvwa/secrets.html"
   },
   "paths": {
     "/api/status": {
@@ -16,8 +16,7 @@
               "application/json": {
                 "example": {
                   "status": "operacional",
-                  "tempoOnline": "1024h",
-                  "mensagem": "ZVWA está rodando normalmente."
+                  "tempoOnline": "1024h"
                 }
               }
             }
@@ -30,38 +29,11 @@
         "summary": "Retorna uma lista de usuários (simulado)",
         "responses": {
           "200": {
-            "description": "Lista de usuários simulada",
+            "description": "Usuários mockados para testes",
             "content": {
               "application/json": {
                 "example": {
-                  "usuarios": [
-                    "ana.elizaur",
-                    "guest",
-                    "admin_oculto",
-                    "suporte123",
-                    "jrocha_dev"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/user/notifications": {
-      "get": {
-        "summary": "Retorna notificações fictícias do sistema",
-        "responses": {
-          "200": {
-            "description": "Notificações do usuário atual",
-            "content": {
-              "application/json": {
-                "example": {
-                  "notificacoes": [
-                    "Sua fatura está disponível.",
-                    "Atualização de segurança aplicada.",
-                    "Nova política de privacidade vigente."
-                  ]
+                  "usuarios": ["ana.elizaur", "guest", "admin_oculto"]
                 }
               }
             }
@@ -71,17 +43,16 @@
     },
     "/api/dev/secret-debug": {
       "get": {
-        "summary": "Endpoint de debug deixado por engano (simulado)",
+        "summary": "[DEBUG] Não subir em produção",
         "responses": {
           "200": {
-            "description": "Dados internos de debug e flag escondida",
+            "description": "Informações internas e flag escondida",
             "content": {
               "application/json": {
                 "example": {
                   "debugMode": true,
-                  "info": "Esta rota não deveria estar exposta.",
-                  "flag": "Z2F{exposed_swagger_doc}",
-                  "lembrete": "As flags devem ser submetidas em https://zero2flag.com/lab/zvwa/secrets.html"
+                  "info": "Esta rota foi deixada por engano.",
+                  "flag": "Z2F{exposed_swagger_doc}"
                 }
               }
             }
@@ -91,17 +62,82 @@
     },
     "/api/internal/health-check": {
       "get": {
-        "summary": "Simula verificação interna de integridade do sistema",
+        "summary": "Check de integridade interno",
         "responses": {
           "200": {
-            "description": "Verificação interna OK",
+            "description": "Tudo parece ok... por fora.",
             "content": {
               "application/json": {
                 "example": {
                   "db": "ok",
-                  "api_gateway": "ok",
-                  "cache": "ok",
-                  "mensagem": "Internamente tudo parece bem — mas será mesmo?"
+                  "auth": "ok",
+                  "mensagem": "A superfície está calma."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/_old/usuarios-ativos": {
+      "get": {
+        "summary": "[LEGADO] Lista de usuários ativos (descontinuado)",
+        "responses": {
+          "200": {
+            "description": "Retorna um array vazio (mock)",
+            "content": {
+              "application/json": {
+                "example": {
+                  "usuarios": [],
+                  "aviso": "endpoint legado - manter apenas por compatibilidade"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/teste/rota-experimental": {
+      "post": {
+        "summary": "[EXPERIMENTAL] Rota de testes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "teste": "valor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Rota aceita qualquer input e responde o que recebeu",
+            "content": {
+              "application/json": {
+                "example": {
+                  "eco": "valor",
+                  "debug": "flag? não aqui 😈"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/FLAG-ACCESS-LOG": {
+      "get": {
+        "summary": "[INSEGURA] Logs expostos via GET?!",
+        "responses": {
+          "200": {
+            "description": "⚠️ Logs não deveriam estar acessíveis publicamente",
+            "content": {
+              "application/json": {
+                "example": {
+                  "logs": [
+                    "Login administrator OK",
+                    "Token expired: guest",
+                    "INFO: FLAG DETECTED - Z2F{logs_are_treacherous}"
+                  ]
                 }
               }
             }
