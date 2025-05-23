@@ -9,6 +9,7 @@ const role = user.role;
 if (role === "admin") {
   document.getElementById("painel-admin").style.display = "block";
   document.getElementById("botao-secreto").style.display = "block";
+  document.getElementById("admin-nome").textContent = `Área de Administração - ${user.email}`;
   fetch("https://zvwa-api.onrender.com/api/dashboard/data", {
     headers: { "x-role": "admin" }
   })
