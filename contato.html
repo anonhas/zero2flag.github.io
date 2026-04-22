@@ -1,101 +1,200 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contato - zero2flag</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <style>
-    @font-face {
-      font-family: '04b03';
-      src: url('04B_30__.TTF') format('truetype');
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>contato / zero2flag</title>
+<link rel="icon" href="favicon.png" type="image/png" />
+<style>
+  @font-face {
+    font-family: '04b03';
+    src: url('04B_30__.TTF') format('truetype');
+  }
 
-    :root {
-      --rosa-principal: #F8DBE8;
-      --preto: #000000;
-    }
+  :root {
+    --bg: #0F0F1E;
+    --bg-alt: #1A1A2E;
+    --rosa: #F8DBE8;
+    --rosa-forte: #FF6FB5;
+    --branco: #fff;
+    --cinza: #888;
+  }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background-color: var(--rosa-principal);
-      color: var(--preto);
-      font-family: monospace;
-      text-align: center;
-      padding: 20px;
-    }
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(45deg, var(--bg-alt) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--bg-alt) 25%, transparent 25%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+    color: var(--rosa);
+    font-family: monospace;
+    padding: 20px;
+    image-rendering: pixelated;
+    min-height: 100vh;
+  }
 
-    header img {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto 30px auto;
-      display: block;
-    }
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+  }
 
-    h1 {
-      font-family: '04b03', monospace;
-      font-size: 32px;
-      margin-bottom: 30px;
-    }
+  .topbar {
+    background: var(--rosa);
+    color: var(--bg);
+    font-family: '04b03', monospace;
+    font-size: 14px;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+  }
 
-    .contato-info {
-      font-size: 18px;
-      line-height: 2.2;
-      max-width: 600px;
-      margin: 0 auto;
-      font-family: monospace;
-    }
+  .topbar a {
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    .contato-info a {
-      color: var(--preto);
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
+  .topbar a:hover { text-decoration: underline; }
 
-    .contato-info a:hover {
-      text-decoration: underline;
-    }
+  .page {
+    background: var(--bg);
+    border: 3px solid var(--rosa);
+    box-shadow: 8px 8px 0 var(--rosa-forte);
+    padding: 32px 28px;
+    text-align: center;
+  }
 
-    .emoji {
-      font-size: 20px;
-    }
+  header img {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 20px;
+    display: block;
+    image-rendering: pixelated;
+  }
 
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-    }
-  </style>
+  h1 {
+    font-family: '04b03', monospace;
+    font-size: 28px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+    color: var(--branco);
+  }
+
+  h1::before { content: "> "; color: var(--rosa-forte); }
+
+  .intro {
+    font-size: 14px;
+    max-width: 520px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+    color: var(--rosa);
+  }
+
+  .contato-info {
+    font-family: monospace;
+    font-size: 15px;
+    text-align: left;
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--bg-alt);
+    color: var(--rosa);
+    padding: 20px 24px;
+    border: 3px solid var(--rosa);
+  }
+
+  .contato-info p {
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--rosa-forte);
+  }
+
+  .contato-info p:last-child { border-bottom: none; }
+
+  .contato-info a {
+    color: var(--rosa);
+    text-decoration: none;
+  }
+
+  .contato-info a:hover {
+    background: var(--rosa);
+    color: var(--bg);
+  }
+
+  .tag {
+    display: inline-block;
+    color: var(--rosa-forte);
+    width: 72px;
+    font-family: '04b03', monospace;
+    font-size: 13px;
+  }
+
+  .ascii-art {
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.2;
+    white-space: pre;
+    margin: 28px 0 0;
+    text-align: center;
+    color: var(--rosa-forte);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 3px dashed var(--rosa);
+    font-size: 12px;
+    color: var(--cinza);
+  }
+</style>
 </head>
 <body>
-  <header>
-    <img src="Zero2Flag.svg" alt="zero2flag logo" />
-  </header>
 
-  <h1>Contato</h1>
+<div class="container">
 
-  
-  <p style="font-size: 16px; max-width: 700px; margin: 0 auto 30px auto;">
-    Entre em contato com a gente para participar das ações da comunidade, pedir suporte, tirar dúvidas ou simplesmente trocar ideia sobre segurança ofensiva. Estamos aqui pra te ouvir!
-  </p>
-  <div class="contato-info">
-    
-    <p><a href="mailto:contato@zero2flag.com"><span class="emoji">📧</span> contato@zero2flag.com</a></p>
-    <p><a href="https://twitter.com/zero2flag" target="_blank"><span class="emoji">🐦</span> @zero2flag no Twitter (X)</a></p>
-    <p><a href="https://instagram.com/zero2flag" target="_blank"><span class="emoji">📸</span> @zero2flag no Instagram</a></p>
-    <p><a href="https://www.linkedin.com/company/02f/" target="_blank"><span class="emoji">💼</span> LinkedIn do zero2flag</a></p>
+  <div class="topbar">
+    <span>zero2flag / contato</span>
+    <a href="index.html">[ voltar ]</a>
   </div>
 
-  <footer>
-    <p>&copy; 2025 zero2flag — Estamos te ouvindo 💬</p>
-  </footer>
+  <div class="page">
+
+    <header>
+      <img src="Zero2Flag.svg" alt="zero2flag" />
+    </header>
+
+    <h1>Contato</h1>
+
+    <p class="intro">
+      Chama pra entrar na comunidade, pedir pentest, tirar dúvida técnica
+      ou só pra trocar ideia sobre CTF. Respondemos no e-mail primeiro,
+      redes sociais quando dá.
+    </p>
+
+    <div class="contato-info">
+      <p><span class="tag">[mail]</span> <a href="mailto:contato@zero2flag.com">contato@zero2flag.com</a></p>
+      <p><span class="tag">[tw/x]</span> <a href="https://twitter.com/zero2flag" target="_blank" rel="noopener">@zero2flag</a></p>
+      <p><span class="tag">[insta]</span> <a href="https://instagram.com/zero2flag" target="_blank" rel="noopener">@zero2flag</a></p>
+      <p><span class="tag">[linkd]</span> <a href="https://www.linkedin.com/company/02f/" target="_blank" rel="noopener">/company/02f</a></p>
+    </div>
+
+    <pre class="ascii-art">
+   ___________
+  |  _______  |
+  | |  &gt;_   | |
+  | |_______| |
+  |___________|
+      zero2flag
+    </pre>
+
+    <footer>
+      &copy; 2025 zero2flag
+    </footer>
+
+  </div>
+</div>
+
 </body>
 </html>
