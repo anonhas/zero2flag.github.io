@@ -1,126 +1,271 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comunidade - zero2flag</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <style>
-    @font-face {
-      font-family: '04b03';
-      src: url('04B_30__.TTF') format('truetype');
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>comunidade / zero2flag</title>
+<link rel="icon" href="favicon.png" type="image/png" />
+<style>
+  @font-face {
+    font-family: '04b03';
+    src: url('04B_30__.TTF') format('truetype');
+  }
 
-    :root {
-      --rosa-principal: #F8DBE8;
-      --preto: #000000;
-    }
+  :root {
+    --bg: #0F0F1E;
+    --bg-alt: #1A1A2E;
+    --rosa: #F8DBE8;
+    --rosa-forte: #FF6FB5;
+    --branco: #fff;
+    --cinza: #888;
+  }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background-color: var(--rosa-principal);
-      color: var(--preto);
-      font-family: monospace;
-      line-height: 1.6;
-      padding: 20px;
-    }
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(45deg, var(--bg-alt) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--bg-alt) 25%, transparent 25%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+    color: var(--rosa);
+    font-family: monospace;
+    line-height: 1.5;
+    padding: 20px;
+    image-rendering: pixelated;
+  }
 
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-      font-family: '04b03', monospace;
-    }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
 
-    h1, h2 {
-      font-family: '04b03', monospace;
-      text-align: center;
-      margin: 20px 0;
-    }
+  .topbar {
+    background: var(--rosa);
+    color: var(--bg);
+    font-family: '04b03', monospace;
+    font-size: 14px;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
 
-    p {
-      max-width: 800px;
-      margin: 10px auto;
-      font-size: 16px;
-    }
+  .topbar a {
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    .img-block {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
+  .topbar a:hover { text-decoration: underline; }
 
-    .img-block img {
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
+  .page {
+    background: var(--bg);
+    border: 3px solid var(--rosa);
+    box-shadow: 8px 8px 0 var(--rosa-forte);
+    padding: 28px;
+  }
 
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
+  h1 {
+    font-family: '04b03', monospace;
+    font-size: 28px;
+    text-align: center;
+    margin: 8px 0 24px;
+    letter-spacing: 2px;
+    color: var(--branco);
+  }
 
-    .gallery img {
-      width: 200px;
-      height: auto;
-      border-radius: 8px;
-      object-fit: cover;
-    }
+  h1::before { content: ">> "; color: var(--rosa-forte); }
+  h1::after { content: " <<"; color: var(--rosa-forte); }
 
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-  </style>
+  h2 {
+    font-family: '04b03', monospace;
+    font-size: 18px;
+    margin: 32px 0 12px;
+    border-bottom: 3px dashed var(--rosa);
+    padding-bottom: 6px;
+    color: var(--rosa-forte);
+  }
+
+  h2::before { content: "# "; color: var(--rosa); }
+
+  p {
+    max-width: 680px;
+    margin: 12px auto;
+    font-size: 15px;
+    color: var(--rosa);
+  }
+
+  p strong { color: var(--branco); }
+
+  .img-block {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+  }
+
+  .img-block img,
+  .gallery img {
+    border: 3px solid var(--rosa);
+    box-shadow: 6px 6px 0 var(--rosa-forte);
+    image-rendering: pixelated;
+  }
+
+  .img-block img {
+    max-width: 560px;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .img-block figcaption {
+    font-size: 11px;
+    color: var(--cinza);
+    text-align: center;
+    margin-top: 8px;
+    font-family: monospace;
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .gallery img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .ascii-divider {
+    text-align: center;
+    font-family: monospace;
+    font-size: 14px;
+    margin: 24px 0;
+    letter-spacing: 4px;
+    color: var(--rosa-forte);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .stats {
+    background: var(--rosa);
+    color: var(--bg);
+    font-family: '04b03', monospace;
+    padding: 16px;
+    margin: 24px 0;
+    font-size: 13px;
+    line-height: 2;
+    border: 3px solid var(--rosa);
+  }
+
+  .stats span.label { color: var(--rosa-forte); font-weight: bold; }
+
+  footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 3px dashed var(--rosa);
+    font-size: 12px;
+    color: var(--cinza);
+  }
+
+  footer a {
+    color: var(--rosa);
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
-  <header>
+
+<div class="container">
+
+  <div class="topbar">
+    <span>zero2flag / comunidade</span>
+    <a href="index.html">[ voltar ]</a>
+  </div>
+
+  <div class="page">
+
     <h1>Comunidade</h1>
-  </header>
 
-  <p>O zero2flag nasceu da inquietação de três mulheres na segurança ofensiva que sentiam falta de outras mulheres jogando, estudando e ocupando espaço nos CTFs. Elas decidiram criar um projeto que ensinasse técnicas, promovesse desafios e premiasse quem resolvesse ali, na hora — sem enrolação, direto ao ponto.</p>
+    <p>
+      O zero2flag começou porque três mulheres em segurança ofensiva cansaram
+      de ser sempre as únicas na sala. CTF atrás de CTF, quase nenhuma outra
+      mulher jogando, estudando junto, ocupando espaço. Resolveram fazer
+      barulho: montaram um projeto pra ensinar técnica, propor desafios e
+      premiar quem resolvesse na hora. Sem enrolação, sem palestra motivacional.
+      É sentar, quebrar e capturar a flag.
+    </p>
 
-  <div class="img-block">
-    <img src="image1.jpeg" alt="Evento zero2flag com projetor">
+    <div class="img-block">
+      <img src="image1.jpeg" alt="evento zero2flag, projetor com a logo &quot;Zero2Flag Web Edition&quot;" />
+    </div>
+
+    <p>
+      Os eventos presenciais viraram marca registrada. Cada edição com um
+      tema novo, uma técnica nova pra aprender, e aquela mistura meio caótica
+      de aprender fazendo com gente gritando quando a flag finalmente sai.
+    </p>
+
+    <div class="img-block">
+      <img src="image2.jpeg" alt="Ana Elizaur no Inven.tiv 2019, plenária sobre comunidades" />
+    </div>
+
+    <p>
+      Quem hoje puxa o projeto é a <strong>Ana Catarina Elizaur</strong>.
+      Entrou curiosa, virou líder da comunidade, e segue levando o zero2flag
+      pra mais espaços — eventos, palestras, parcerias. A ideia segue a
+      mesma: conteúdo técnico, sem paternalismo, direto.
+    </p>
+
+    <div class="img-block">
+      <img src="image3.jpeg" alt="troféu 3º lugar CTF Laboratório de Segurança Cibernética da Febraban - time Inhum@ns" />
+    </div>
+
+    <p>
+      Vieram as competições, os troféus, o reconhecimento. Bom, mas não era
+      o ponto. O ponto sempre foi ver mais menina entrando no terminal,
+      errando comando, lendo writeup, e descobrindo que dá conta.
+    </p>
+
+    <div class="ascii-divider">
+      *  ~  *  ~  *  ~  *  ~  *  ~  *  ~  *  ~  *
+    </div>
+
+    <h2>o que rola hoje</h2>
+
+    <p>
+      Comunidade técnica ativa, conteúdo sobre segurança ofensiva publicado
+      aberto, serviços de pentest pra quem contrata, e espaço pra quem tá
+      querendo entrar na área ou trocar de carreira. Nada mágico, é estudar,
+      praticar e aparecer.
+    </p>
+
+    <div class="stats">
+      <span class="label">&gt; status:</span> online<br>
+      <span class="label">&gt; foco:</span> ctf, pentest, web, redes<br>
+      <span class="label">&gt; quem entra:</span> mulheres em qualquer nível<br>
+      <span class="label">&gt; custo:</span> zero
+    </div>
+
+    <h2>galeria</h2>
+    <div class="gallery">
+      <img src="image4.jpeg" alt="Ana no CTF" />
+      <img src="image5.jpeg" alt="Ana palestrando em sala de aula" />
+      <img src="image6.jpeg" alt="adesivo zero2flag num armário de hidrante coberto de stickers da cena" />
+    </div>
+
+    <footer>
+      zero2flag &middot; <a href="contato.html">fala com a gente</a>
+    </footer>
+
   </div>
+</div>
 
-  <p>Os eventos presenciais marcaram época: cada edição trazia um tema novo, uma técnica nova, e sempre uma energia que misturava aprendizado com adrenalina. A cada desafio resolvido, uma nova hacker se descobria capaz.</p>
-
-  <div class="img-block">
-    <img src="image2.jpeg" alt="Palestra Inventiv com Ana Elizaur">
-  </div>
-
-  <p>De aluna curiosa a líder de comunidade: Ana Elizaur, fundadora atual do projeto, segue levando o zero2flag pra mais gente. De eventos a palestras, ela representa a essência do que o projeto é — aprendizado acessível, técnico e com propósito.</p>
-
-  <div class="img-block">
-    <img src="image3.jpeg" alt="Troféu CTF Inhumans">
-  </div>
-
-  <p>As conquistas também vieram. Participações em competições, troféus, reconhecimento — mas o mais importante sempre foi ver mais meninas entrando no jogo, clicando, testando, explorando.</p>
-
-  <h2>Hoje, o zero2flag é...</h2>
-  <p>...uma comunidade técnica que publica conteúdo sobre segurança ofensiva, oferece serviços de pentest, e ajuda meninas e mulheres que querem entrar ou migrar de carreira para a área. Um espaço de acolhimento, aprendizado e prática real.</p>
-
-  <h2>Galeria de memórias</h2>
-  <div class="gallery">
-    <img src="image4.jpeg" alt="Ana no CTF">
-    <img src="image5.jpeg" alt="Ana em sala de aula">
-    <img src="image6.jpeg" alt="Adesivos zero2flag">
-  </div>
-
-  <footer>
-    <p>&copy; 2025 zero2flag — Construído com histórias reais.</p>
-  </footer>
 </body>
 </html>
