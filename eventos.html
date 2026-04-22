@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eventos / zero2flag</title>
+<link rel="icon" href="favicon.png" type="image/png" />
+<style>
+  @font-face {
+    font-family: '04b03';
+    src: url('04B_30__.TTF') format('truetype');
+  }
+
+  :root {
+    --bg: #0F0F1E;
+    --bg-alt: #1A1A2E;
+    --rosa: #F8DBE8;
+    --rosa-forte: #FF6FB5;
+    --branco: #fff;
+    --cinza: #888;
+    --cinza-escuro: #333;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(45deg, var(--bg-alt) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--bg-alt) 25%, transparent 25%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+    color: var(--rosa);
+    font-family: monospace;
+    line-height: 1.5;
+    padding: 20px;
+    image-rendering: pixelated;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .topbar {
+    background: var(--rosa);
+    color: var(--bg);
+    font-family: '04b03', monospace;
+    font-size: 14px;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .topbar a {
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .topbar a:hover { text-decoration: underline; }
+
+  .page {
+    background: var(--bg);
+    border: 3px solid var(--rosa);
+    box-shadow: 8px 8px 0 var(--rosa-forte);
+    padding: 28px;
+  }
+
+  h1 {
+    font-family: '04b03', monospace;
+    font-size: 28px;
+    text-align: center;
+    margin: 8px 0 16px;
+    letter-spacing: 2px;
+    color: var(--branco);
+  }
+
+  h1::before { content: ">> "; color: var(--rosa-forte); }
+  h1::after { content: " <<"; color: var(--rosa-forte); }
+
+  .intro {
+    text-align: center;
+    font-size: 13px;
+    color: var(--rosa);
+    margin-bottom: 24px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .intro a { color: var(--rosa-forte); }
+
+  /* controls */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-family: '04b03', monospace;
+    font-size: 14px;
+  }
+
+  .controls button {
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--rosa);
+    font-family: '04b03', monospace;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-top: 3px solid var(--rosa);
+    border-left: 3px solid var(--rosa);
+    border-right: 3px solid var(--rosa-forte);
+    border-bottom: 3px solid var(--rosa-forte);
+  }
+
+  .controls button:hover {
+    color: var(--branco);
+  }
+
+  .controls button.active {
+    background: var(--rosa);
+    color: var(--bg);
+    border-top: 3px solid var(--rosa-forte);
+    border-left: 3px solid var(--rosa-forte);
+    border-right: 3px solid var(--rosa);
+    border-bottom: 3px solid var(--rosa);
+  }
+
+  /* destaque próximo evento */
+  .next-event {
+    background: var(--rosa);
+    color: var(--bg);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    border: 3px solid var(--rosa);
+    position: relative;
+  }
+
+  .next-event::before {
+    content: ">> PRÓXIMO <<";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--rosa-forte);
+    color: var(--bg);
+    font-family: '04b03', monospace;
+    font-size: 12px;
+    padding: 2px 10px;
+    letter-spacing: 1px;
+  }
+
+  .next-event h3 {
+    font-family: '04b03', monospace;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .next-event h3 a {
+    color: var(--bg);
+    text-decoration: none;
+  }
+
+  .next-event h3 a:hover { text-decoration: underline; }
+
+  .next-event .meta {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .next-event .countdown {
+    font-family: '04b03', monospace;
+    font-size: 14px;
+    margin-top: 10px;
+    color: var(--bg);
+    font-weight: bold;
+  }
+
+  /* mês */
+  h2.mes {
+    font-family: '04b03', monospace;
+    font-size: 18px;
+    margin: 28px 0 10px;
+    border-bottom: 3px dashed var(--rosa);
+    padding-bottom: 6px;
+    color: var(--rosa-forte);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  h2.mes::before { content: "# "; color: var(--rosa); }
+
+  /* tabela */
+  .tabela-wrap {
+    overflow-x: auto;
+    margin-bottom: 16px;
+    border: 3px solid var(--rosa);
+    background: var(--bg-alt);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 680px;
+  }
+
+  th {
+    background: var(--rosa);
+    color: var(--bg);
+    font-family: '04b03', monospace;
+    font-weight: normal;
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  td {
+    padding: 10px;
+    border-top: 1px dashed var(--cinza-escuro);
+    color: var(--rosa);
+    vertical-align: top;
+  }
+
+  tr.passado td {
+    color: var(--cinza);
+    text-decoration: line-through;
+    text-decoration-color: var(--cinza);
+  }
+
+  tr.passado td a {
+    color: var(--cinza);
+  }
+
+  tr:hover td {
+    background: rgba(255, 111, 181, 0.08);
+  }
+
+  td a {
+    color: var(--rosa);
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px dotted var(--rosa-forte);
+  }
+
+  td a:hover {
+    color: var(--branco);
+    border-bottom-color: var(--branco);
+  }
+
+  .tag-formato {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 11px;
+    background: var(--bg);
+    color: var(--rosa-forte);
+    border: 1px solid var(--rosa-forte);
+    font-family: '04b03', monospace;
+    letter-spacing: 1px;
+  }
+
+  .tag-formato.hibrido { color: var(--rosa); border-color: var(--rosa); }
+
+  /* loading */
+  .loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--rosa);
+    font-family: monospace;
+    font-size: 14px;
+  }
+
+  .loading .cursor {
+    display: inline-block;
+    background: var(--rosa);
+    width: 8px;
+    height: 12px;
+    vertical-align: middle;
+    animation: blink 1s steps(2) infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .error {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--rosa-forte);
+    font-family: monospace;
+    font-size: 14px;
+  }
+
+  .footer-info {
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 3px dashed var(--rosa);
+    font-size: 11px;
+    color: var(--cinza);
+  }
+
+  .footer-info a { color: var(--rosa); }
+
+  .contribuir {
+    background: var(--bg-alt);
+    border: 3px dashed var(--rosa-forte);
+    padding: 16px 20px;
+    margin: 24px 0 0;
+    font-size: 13px;
+    color: var(--rosa);
+    text-align: center;
+  }
+
+  .contribuir a {
+    color: var(--rosa-forte);
+    font-weight: bold;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 16px;
+    font-size: 12px;
+    color: var(--cinza);
+  }
+
+  footer a { color: var(--rosa); font-weight: bold; }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 22px; }
+    .page { padding: 20px 16px; }
+    table { font-size: 12px; }
+    th, td { padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="topbar">
+    <span>zero2flag / eventos</span>
+    <a href="index.html">[ voltar ]</a>
+  </div>
+
+  <div class="page">
+
+    <h1>Eventos Cybersec</h1>
+
+    <p class="intro">
+      Tabela que mantemos no GitHub com eventos de segurança ofensiva
+      no Brasil e no mundo. Conferências, BSides, CTFs, workshops.
+      Conteúdo atualizado direto do
+      <a href="https://github.com/zero2flag/EventosCybersec" target="_blank" rel="noopener">repositório</a>.
+    </p>
+
+    <div class="controls">
+      <button id="btn-2026" class="active" data-ano="2026">[ 2026 ]</button>
+      <button id="btn-2025" data-ano="2025">[ 2025 ]</button>
+      <button id="btn-2024" data-ano="2024">[ 2024 ]</button>
+    </div>
+
+    <div id="conteudo">
+      <div class="loading">
+        &gt; carregando eventos<span class="cursor"></span>
+      </div>
+    </div>
+
+    <div class="contribuir">
+      conhece um evento que falta aqui?
+      <a href="https://github.com/zero2flag/EventosCybersec" target="_blank" rel="noopener">abre um PR</a>
+      ou manda pro nosso <a href="mailto:contato@zero2flag.com">e-mail</a>.
+    </div>
+
+    <div class="footer-info">
+      dados carregados direto de
+      <a href="https://github.com/zero2flag/EventosCybersec" target="_blank" rel="noopener">github.com/zero2flag/EventosCybersec</a>
+    </div>
+
+    <footer>
+      zero2flag &middot; <a href="comunidade.html">comunidade</a>
+      &middot; <a href="contato.html">contato</a>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   eventos.js - carrega o markdown do github e renderiza
+   ============================================================ */
+
+const BASE_URL = 'https://raw.githubusercontent.com/zero2flag/EventosCybersec/main/';
+const cache = {};
+
+const MESES_NOMES = [
+  'Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+  'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'
+];
+
+function parseMarkdown(md) {
+  // organiza: { nomeDoMes: [ {nome, url, data, local, tipo, formato, dataInicio}, ... ], ... }
+  const linhas = md.split('\n');
+  const meses = {};
+  let mesAtual = null;
+
+  for (let linha of linhas) {
+    const trimmed = linha.trim();
+
+    // detecta header de mês: "## Janeiro"
+    const mMes = trimmed.match(/^##\s+(.+)$/);
+    if (mMes) {
+      const nome = mMes[1].trim();
+      if (MESES_NOMES.some(m => m.toLowerCase() === nome.toLowerCase())) {
+        mesAtual = nome;
+        if (!meses[mesAtual]) meses[mesAtual] = [];
+      } else {
+        mesAtual = null;
+      }
+      continue;
+    }
+
+    if (!mesAtual) continue;
+
+    // linha de tabela: | col | col | col | col | col |
+    if (!trimmed.startsWith('|')) continue;
+
+    // pula cabeçalho e divisória
+    if (trimmed.toLowerCase().includes('nome do evento')) continue;
+    if (/^\|[\s\-|]+\|$/.test(trimmed)) continue;
+
+    // extrai colunas
+    const cols = trimmed.split('|')
+      .slice(1, -1) // remove vazios nas pontas
+      .map(c => c.trim());
+
+    if (cols.length < 5) continue;
+
+    const [nomeRaw, dataRaw, localRaw, tipoRaw, formatoRaw] = cols;
+
+    // tenta extrair nome + url do markdown [nome](url)
+    let nome = nomeRaw, url = null;
+    const mLink = nomeRaw.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (mLink) {
+      nome = mLink[1];
+      url = mLink[2];
+    }
+
+    // tenta extrair data de início pra ordenação e destaque
+    const dataInicio = extrairDataInicio(dataRaw);
+
+    meses[mesAtual].push({
+      nome,
+      url,
+      data: dataRaw,
+      local: localRaw,
+      tipo: tipoRaw,
+      formato: formatoRaw,
+      dataInicio
+    });
+  }
+
+  return meses;
+}
+
+function extrairDataInicio(dataStr) {
+  // pega primeiro DD/MM/YYYY que aparecer
+  const m = dataStr.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if (!m) return null;
+  const [_, dia, mes, ano] = m;
+  return new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
+}
+
+function formatarFormato(f) {
+  const low = f.toLowerCase();
+  let classe = '';
+  if (low.includes('híbrido') || low.includes('hibrido')) classe = 'hibrido';
+  return `<span class="tag-formato ${classe}">${escapeHTML(f)}</span>`;
+}
+
+function escapeHTML(s) {
+  if (!s) return '';
+  return s.replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+}
+
+function renderizar(meses, ano) {
+  const container = document.getElementById('conteudo');
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+
+  // lista todos eventos em ordem cronológica pra achar próximo
+  const todosEventos = [];
+  for (const nomeMes of MESES_NOMES) {
+    if (meses[nomeMes]) {
+      for (const ev of meses[nomeMes]) {
+        todosEventos.push({ ...ev, mes: nomeMes });
+      }
+    }
+  }
+  todosEventos.sort((a, b) => {
+    if (!a.dataInicio) return 1;
+    if (!b.dataInicio) return -1;
+    return a.dataInicio - b.dataInicio;
+  });
+
+  const proximo = todosEventos.find(e => e.dataInicio && e.dataInicio >= hoje);
+
+  let html = '';
+
+  // destaque do próximo
+  if (proximo && parseInt(ano) >= hoje.getFullYear()) {
+    const diasAte = Math.ceil((proximo.dataInicio - hoje) / (1000*60*60*24));
+    const contStr = diasAte === 0 ? 'ACONTECE HOJE!'
+                 : diasAte === 1 ? 'é amanhã!'
+                 : `faltam ${diasAte} dias`;
+
+    const nomeComLink = proximo.url
+      ? `<a href="${escapeHTML(proximo.url)}" target="_blank" rel="noopener">${escapeHTML(proximo.nome)}</a>`
+      : escapeHTML(proximo.nome);
+
+    html += `
+      <div class="next-event">
+        <h3>${nomeComLink}</h3>
+        <div class="meta">${escapeHTML(proximo.data)} &middot; ${escapeHTML(proximo.local)}</div>
+        <div class="countdown">&gt; ${contStr}</div>
+      </div>
+    `;
+  }
+
+  // tabelas por mês
+  let temAlgum = false;
+  for (const nomeMes of MESES_NOMES) {
+    if (!meses[nomeMes] || meses[nomeMes].length === 0) continue;
+    temAlgum = true;
+
+    html += `<h2 class="mes">${nomeMes}</h2>`;
+    html += `<div class="tabela-wrap"><table>`;
+    html += `
+      <thead>
+        <tr>
+          <th>evento</th>
+          <th>data</th>
+          <th>local</th>
+          <th>formato</th>
+        </tr>
+      </thead>
+      <tbody>
+    `;
+
+    for (const ev of meses[nomeMes]) {
+      const passado = ev.dataInicio && ev.dataInicio < hoje ? ' class="passado"' : '';
+      const nomeCell = ev.url
+        ? `<a href="${escapeHTML(ev.url)}" target="_blank" rel="noopener">${escapeHTML(ev.nome)}</a>`
+        : escapeHTML(ev.nome);
+
+      html += `
+        <tr${passado}>
+          <td>${nomeCell}<br><small style="color:var(--cinza);font-size:11px;">${escapeHTML(ev.tipo)}</small></td>
+          <td>${escapeHTML(ev.data)}</td>
+          <td>${escapeHTML(ev.local)}</td>
+          <td>${formatarFormato(ev.formato)}</td>
+        </tr>
+      `;
+    }
+
+    html += `</tbody></table></div>`;
+  }
+
+  if (!temAlgum) {
+    html += `<div class="error">&gt; nenhum evento encontrado pra ${escapeHTML(ano)}.</div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+async function carregarAno(ano) {
+  const container = document.getElementById('conteudo');
+  container.innerHTML = '<div class="loading">&gt; carregando eventos<span class="cursor"></span></div>';
+
+  // toggle botões
+  document.querySelectorAll('.controls button').forEach(b => {
+    b.classList.toggle('active', b.dataset.ano === ano);
+  });
+
+  if (cache[ano]) {
+    renderizar(cache[ano], ano);
+    return;
+  }
+
+  try {
+    const resp = await fetch(BASE_URL + `eventos-${ano}.md`);
+    if (!resp.ok) throw new Error('resposta não-ok: ' + resp.status);
+    const md = await resp.text();
+    const meses = parseMarkdown(md);
+    cache[ano] = meses;
+    renderizar(meses, ano);
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `
+      <div class="error">
+        &gt; erro ao carregar eventos de ${escapeHTML(ano)}.<br><br>
+        tenta ir direto no <a href="https://github.com/zero2flag/EventosCybersec/blob/main/eventos-${escapeHTML(ano)}.md" style="color:var(--rosa-forte);">github</a>.
+      </div>
+    `;
+  }
+}
+
+// wire up botões
+document.querySelectorAll('.controls button').forEach(btn => {
+  btn.addEventListener('click', () => carregarAno(btn.dataset.ano));
+});
+
+// carrega ano atual por padrão
+const anoAtual = new Date().getFullYear().toString();
+const botaoAtual = document.querySelector(`.controls button[data-ano="${anoAtual}"]`);
+if (botaoAtual) {
+  carregarAno(anoAtual);
+} else {
+  carregarAno('2026');
+}
+</script>
+
+</body>
+</html>
