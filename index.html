@@ -1,72 +1,178 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>zero2flag</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <style>
-    @font-face {
-      font-family: '04b03';
-      src: url('04B_30__.TTF') format('truetype');
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>zero2flag</title>
+<link rel="icon" href="favicon.png" type="image/png" />
+<meta name="description" content="comunidade de mulheres em segurança ofensiva. ctfs, estudo e pentest.">
+<style>
+  @font-face {
+    font-family: '04b03';
+    src: url('04B_30__.TTF') format('truetype');
+  }
 
-    :root {
-      --rosa-principal: #F8DBE8;
-      --preto: #000000;
-    }
+  :root {
+    --bg: #0F0F1E;
+    --bg-alt: #1A1A2E;
+    --rosa: #F8DBE8;
+    --rosa-forte: #FF6FB5;
+    --branco: #fff;
+    --cinza: #888;
+  }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background-color: var(--rosa-principal);
-      color: var(--preto);
-      font-family: '04b03', monospace;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+  html, body { height: 100%; }
 
-    img.logo {
-      width: 100%;
-      max-width: 1300px;
-      height: auto;
-      margin-bottom: 40px;
-    }
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(45deg, var(--bg-alt) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--bg-alt) 25%, transparent 25%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+    color: var(--rosa);
+    font-family: '04b03', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    image-rendering: pixelated;
+  }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
+  .frame {
+    background: var(--bg);
+    border: 3px solid var(--rosa);
+    box-shadow: 8px 8px 0 var(--rosa-forte);
+    padding: 32px 28px 24px;
+    max-width: 820px;
+    width: 100%;
+  }
 
-    nav a {
-      text-decoration: none;
-      color: var(--preto);
-      font-size: 25px;
-      font-weight: bold;
-      padding: 5px 10px;
-    }
+  .titlebar {
+    background: var(--rosa);
+    color: var(--bg);
+    font-family: '04b03', monospace;
+    font-size: 14px;
+    padding: 4px 8px;
+    margin: -32px -28px 24px -28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  .titlebar .close {
+    border: 2px solid var(--bg);
+    padding: 0 4px;
+    line-height: 1;
+  }
+
+  img.logo {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    margin: 0 auto 28px auto;
+    display: block;
+    image-rendering: pixelated;
+  }
+
+  .tagline {
+    font-family: monospace;
+    font-size: 13px;
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+    color: var(--branco);
+  }
+
+  .tagline .prompt { color: var(--rosa-forte); }
+
+  .tagline .cursor {
+    display: inline-block;
+    background: var(--rosa);
+    width: 8px;
+    height: 12px;
+    vertical-align: middle;
+    animation: blink 1s steps(2) infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--rosa);
+    font-size: 22px;
+    font-family: '04b03', monospace;
+    padding: 8px 16px;
+    background: var(--bg);
+    border-top: 3px solid var(--rosa);
+    border-left: 3px solid var(--rosa);
+    border-right: 3px solid var(--rosa-forte);
+    border-bottom: 3px solid var(--rosa-forte);
+  }
+
+  nav a:hover {
+    border-top: 3px solid var(--rosa-forte);
+    border-left: 3px solid var(--rosa-forte);
+    border-right: 3px solid var(--rosa);
+    border-bottom: 3px solid var(--rosa);
+    transform: translate(1px, 1px);
+    color: var(--branco);
+  }
+
+  nav a::before { content: "[ "; color: var(--rosa-forte); }
+  nav a::after { content: " ]"; color: var(--rosa-forte); }
+
+  .meta {
+    font-family: monospace;
+    font-size: 11px;
+    margin-top: 24px;
+    color: var(--cinza);
+  }
+</style>
 </head>
 <body>
-  <img src="Zero2Flag.svg" alt="zero2flag logo" class="logo" />
+
+<div class="frame">
+  <div class="titlebar">
+    <span>zero2flag.exe</span>
+    <span class="close">X</span>
+  </div>
+
+  <img src="Zero2Flag.svg" alt="zero2flag" class="logo" />
+
+  <div class="tagline">
+    <span class="prompt">&gt;</span> mulheres. ctf. pentest.<span class="cursor"></span>
+  </div>
 
   <nav>
     <a href="comunidade.html">Comunidade</a>
     <a href="contato.html">Contato</a>
   </nav>
+
+  <div class="meta">
+    ult. update: 2025
+  </div>
+</div>
+
+<!-- oi, se tá vendo isso é porque tem F12. bom sinal. -->
+<script>
+  console.log("%c> zero2flag", "color:#F8DBE8;background:#0F0F1E;font-family:monospace;font-size:18px;padding:4px 8px;");
+  console.log("%cquer entrar? contato@zero2flag.com", "font-family:monospace;color:#FF6FB5;");
+</script>
+
 </body>
 </html>
